@@ -8,7 +8,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 
 def mailregist(tomail):
-    fromaddr = 'chengzhuo@cofco.com'
+    fromaddr = ''
     toaddrs  = [tomail]
 
     msg = MIMEMultipart()
@@ -34,10 +34,10 @@ def mailregist(tomail):
         att1.add_header('Content-Disposition', 'attachment', filename = fileName)  
         msg.attach(att1)  
 
-    username = 'chengzhuo@cofco.com'
-    password = 'cz8804CZ'
+    username = ''
+    password = ''
 
-    server = smtplib.SMTP('mail.cofco.com')
+    server = smtplib.SMTP('')
     server.login(username,password)
     server.sendmail(fromaddr, toaddrs, msg.as_string())
     server.quit()

@@ -7,8 +7,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart  
 from email.mime.image import MIMEImage
 
-def mailregist(tomail):
-    fromaddr = ''
+def mailregist(tomail,mailu,mailp,code):
+    fromaddr = mailu
     toaddrs  = [tomail]
 
     msg = MIMEMultipart()
@@ -18,8 +18,9 @@ def mailregist(tomail):
     
     with open('/root/pytest/day3/funtyping/funtyping/mail/regist_mail.tpl', 'r') as fd:
         data = fd.read()
-
-    txt = MIMEText(data,_subtype='html') 
+    url ='http://192.168.109.132:5000/init-password?email=%s&code=%s' % (tomail,code)
+    content = data.format(url)
+    txt = MIMEText(content,_subtype='html') 
     msg.attach(txt) 
 
     BAK_DIR = '/root/pytest/mail/mt/'
@@ -34,10 +35,10 @@ def mailregist(tomail):
         att1.add_header('Content-Disposition', 'attachment', filename = fileName)  
         msg.attach(att1)  
 
-    username = ''
-    password = ''
+    username = mailu
+    password = mailp
 
-    server = smtplib.SMTP('')
+    server = smtplib.SMTP('mail.cofco.com')
     server.login(username,password)
     server.sendmail(fromaddr, toaddrs, msg.as_string())
     server.quit()

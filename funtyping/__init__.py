@@ -9,6 +9,7 @@ app.config.from_pyfile('app_config.cfg')
 app.jinja_env.globals.update(static='/static')
 app.jinja_env.globals.update(get_user_id=get_user_id)
 
-from funtyping.views.regist import regist
-
+from funtyping.views.regist import *
+from funtyping.views.login import *
+from funtyping.views.note import *
 

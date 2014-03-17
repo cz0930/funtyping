@@ -76,3 +76,8 @@ def write_note(user_id,time,content):
     db.session.add(writenote)
     db.session.commit()
 
+def update_password(user_id,salt,password):
+    passw = hashlib.sha1(salt+password).hexdigest()
+    u = User.query.filter_by(id=user_id).first()
+    u.password = passw
+    db.session.commit()

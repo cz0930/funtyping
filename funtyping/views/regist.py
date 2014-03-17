@@ -5,6 +5,10 @@ from funtyping.mail.mail import *
 from funtyping.models.user_models import *
 import random,string,os
 
+@app.route('/')
+def index():
+    return render_template('regist.html')
+
 @app.route('/regist',methods=['GET', 'POST'])
 def regist():
     return render_template('regist.html') 
